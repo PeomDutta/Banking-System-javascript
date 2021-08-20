@@ -6,6 +6,8 @@ document.getElementById("login-submit").addEventListener('click', function () {
     const userPassword = passwordField.value;
 
     if (userEmail == 'peomd@gmail.com' && userPassword == 'bank') {
+        const para = document.getElementById("pass-check")
+        para.innerText = '✅ Access Given';
         window.location.href = 'banking.html';
     }
     else {
