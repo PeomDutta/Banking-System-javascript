@@ -9,9 +9,13 @@ document.getElementById("deposit-button").addEventListener('click', function () 
     const depositeShow = document.getElementById("deposit-show");
     const depositeShowTotal = depositeShow.innerText;
     const depositeShowTotalValue = parseFloat(depositeShowTotal);
-    const totalDepositAmount = depositeShowTotalValue + depositInputFieldValue;
 
-    depositeShow.innerText = totalDepositAmount;
+    if (depositInputFieldValue > 0) {
+        const totalDepositAmount = depositeShowTotalValue + depositInputFieldValue;
+        depositeShow.innerText = totalDepositAmount;
+    }
+
+
 
 
     // balance after deposit handle 
@@ -19,11 +23,11 @@ document.getElementById("deposit-button").addEventListener('click', function () 
     const balanceShowTotal = balanceShow.innerText;
     const balanceShowTotalValue = parseFloat(balanceShowTotal);
 
+    if (depositInputFieldValue > 0) {
+        const totalBalanceAmount = balanceShowTotalValue + depositInputFieldValue;
+        balanceShow.innerText = totalBalanceAmount;
+    }
 
-    const totalBalanceAmount = balanceShowTotalValue + depositInputFieldValue;
-
-
-    balanceShow.innerText = totalBalanceAmount;
 
     // clear deposit money
     depositInputField.value = "";
@@ -44,9 +48,6 @@ document.getElementById("withdraw-button").addEventListener('click', function ()
     const withdrawShow = document.getElementById("withdraw-show");
     const withdrawShowTotal = withdrawShow.innerText;
     const withdrawShowTotalValue = parseFloat(withdrawShowTotal);
-    const totalWithdrawAmount = withdrawShowTotalValue + withdrawInputFieldValue;
-
-    withdrawShow.innerText = totalWithdrawAmount;
 
 
     // balance after withdraw handle 
@@ -55,11 +56,17 @@ document.getElementById("withdraw-button").addEventListener('click', function ()
     const balanceShowTotal = balanceShow.innerText;
     const balanceShowTotalValue = parseFloat(balanceShowTotal);
 
+    if (withdrawInputFieldValue > 0 && withdrawInputFieldValue <= balanceShowTotalValue) {
+        const totalWithdrawAmount = withdrawShowTotalValue + withdrawInputFieldValue;
+        withdrawShow.innerText = totalWithdrawAmount;
+    }
 
-    const totalBalanceAmount = balanceShowTotalValue - withdrawInputFieldValue;
 
+    if (withdrawInputFieldValue > 0 && withdrawInputFieldValue <= balanceShowTotalValue) {
+        const totalBalanceAmount = balanceShowTotalValue - withdrawInputFieldValue;
+        balanceShow.innerText = totalBalanceAmount;
+    }
 
-    balanceShow.innerText = totalBalanceAmount;
 
     // clear withdraw money
     withdrawInputField.value = "";
